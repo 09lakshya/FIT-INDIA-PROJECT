@@ -1,0 +1,351 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personalized Workout & Diet Plan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1950&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background:rgba(255, 255, 255, 0.95);
+;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .container:hover {
+      transform: scale(1.01);
+    }
+    h2, h3 {
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    input, select, button {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.2s ease-in-out;
+    }
+    input:focus, select:focus {
+      border-color: #0b0e10;
+      outline: none;
+      box-shadow: 0 0 5px rgba(13, 14, 15, 0.2);
+    }
+    button {
+      background-color: #080808;
+      color: white;
+      margin-top: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0c0c0c;
+      transform: scale(1.03);
+    }
+    .plan {
+      display: none;
+      margin-top: 30px;
+      background: #b1aeae;
+      padding: 20px;
+      border-radius: 8px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .qr-code {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .qr-code img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 10px;
+    }
+    #thankyou-msg {
+      display: none;
+      background: #08080808;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Membership Form -->
+  <form id="membershipForm">
+    <h2>Join Our Membership</h2>
+    <div class="qr-code">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.example.com&size=200x200" alt="Universal QR Code" />
+  <p>Scan to pay with any UPI app<br><strong>UPI ID:</strong> </p>
+</div>
+
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Your Name" required />
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" placeholder="10-digit Phone Number" required />
+
+    <button type="button" onclick="submitMembership()">Join Now</button>
+  </form>
+
+  <div id="thankyou-msg">
+    <h3>🎉 Thank you for joining THE FIT INDIA PROJECT family!</h3>
+    <p>You can now access workouts and diet plans.</p>
+  </div>
+
+  <!-- Workout Planner -->
+  <form id="workoutForm" style="display:none; margin-top: 40px;">
+    <h2>Get Your Personalized Workout Plan</h2>
+
+    <label for="sport">Select Sport:</label>
+    <select id="sport" required>
+      <option value="">-- Select Sport --</option>
+      <option value="cricket">Cricket</option>
+      <option value="basketball">Basketball</option>
+      <option value="gym">Gym</option>
+    </select>
+
+    <label for="role">Choose Focus/Role:</label>
+    <select id="role" disabled>
+      <option value="">-- Select Sport First --</option>
+    </select>
+
+    <button type="submit">Get Plan</button>
+  </form>
+
+  <!-- Workout Plans -->
+  <div id="cricket-batsman" class="plan">
+    <h3>🏏 Cricket - Batsman Plan</h3>
+    <ul>
+      <li>Shadow practice - 15 mins</li>
+      <li>Net practice - 60 mins</li>
+      <li>Strength training - 30 mins</li>
+    </ul>
+  </div>
+
+  <div id="cricket-bowler" class="plan">
+    <h3>🏏 Cricket - Bowler Plan</h3>
+    <ul>
+      <li>Bowling drills - 60 mins</li>
+      <li>Speed & Agility - 30 mins</li>
+      <li>Stretching - 15 mins</li>
+    </ul>
+  </div>
+
+  <div id="cricket-allrounder" class="plan">
+    <h3>🏏 Cricket - Allrounder Plan</h3>
+    <ul>
+      <li>Batting - 40 mins</li>
+      <li>Bowling - 40 mins</li>
+      <li>Strength training - 20 mins</li>
+      <li>Fielding - 30 mins</li>
+    </ul>
+  </div>
+
+  <div id="cricket-fielding" class="plan">
+    <h3>🏏 Cricket - Fielding Plan</h3>
+    <ul>
+      <li>Slip catching - 25 mins</li>
+      <li>Ground fielding - 30 mins</li>
+      <li>Direct hits - 20 mins</li>
+    </ul>
+  </div>
+
+  <div id="basketball-drills" class="plan">
+    <h3>🏀 Basketball Drills</h3>
+    <ul>
+      <li>Dribbling - 20 mins</li>
+      <li>Shooting drills - 30 mins</li>
+      <li>Team play - 30 mins</li>
+    </ul>
+  </div>
+
+  <div id="gym-chest" class="plan">
+    <h3>💪 Gym - Chest</h3>
+    <ul>
+      <li>Bench press - 4 sets</li>
+      <li>Incline press - 3 sets</li>
+      <li>Pushups - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-biceps" class="plan">
+    <h3>💪 Gym - Biceps</h3>
+    <ul>
+      <li>preacher curls - 4 sets</li>
+      <li>Dumbbell curls - 3 sets</li>
+      <li>Hammer curls - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-triceps" class="plan">
+    <h3>💪 Gym - Triceps</h3>
+    <ul>
+      <li>Skull crusher - 4 sets</li>
+      <li>Overhead Triceps Extension - 3 sets</li>
+      <li>Tricep pushdown - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-back" class="plan">
+    <h3>💪 Gym - Back</h3>
+    <ul>
+      <li>Deadlift - 3 sets</li>
+      <li>Lat pulldown - 3 sets</li>
+      <li>Seated cable rows - 3 sets</li>
+      <li>Dumbbell shrugs - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-shoulder" class="plan">
+    <h3>💪 Gym - Shoulder</h3>
+    <ul>
+      <li>Face pull - 4 sets</li>
+      <li>Side lateral raise - 3 sets</li>
+      <li>Seated dumbbell press - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-legs" class="plan">
+    <h3>💪 Gym - Legs</h3>
+    <ul>
+      <li>Leg extensions - 4 sets</li>
+      <li>RDL - 3 sets</li>
+      <li>Squats - 3 sets</li>
+      <li>Lunges - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-calves-forearms" class="plan">
+    <h3>💪 Gym - Calves and Forearms</h3>
+    <ul>
+      <li>Calf raises - 4 sets</li>
+      <li>Reverse barbell curl - 3 sets</li>
+      <li>Wrist curl - 3 sets</li>
+      <li>Reverse wrist curl - 3 sets</li>
+    </ul>
+  </div>
+
+  <div id="gym-core" class="plan">
+    <h3>💪 Gym - Core</h3>
+    <ul>
+      <li>Plank - 4 sets</li>
+      <li>Crunches - 3 sets</li>
+      <li>Russian twist - 3 sets</li>
+      <li>Mountain climbers - 3 sets</li>
+    </ul>
+  </div>
+
+  <!-- Diet Plan -->
+  <div id="diet-plan" class="plan">
+    <h3>🍽️ Suggested Diet Plan</h3>
+    <ul id="diet-items"></ul>
+  </div>
+</div>
+
+<script>
+  const roleSelect = document.getElementById("role");
+  const sportSelect = document.getElementById("sport");
+
+  const roles = {
+    cricket: ["batsman", "bowler", "allrounder", "fielding"],
+    basketball: ["drills"],
+    gym: ["chest", "biceps", "triceps", "back", "shoulder", "legs", "calves-forearms", "core"]
+  };
+
+  const diets = {
+    cricket: ["Oats + banana", "Boiled eggs", "Chicken rice bowl", "Protein shake"],
+    basketball: ["Fruit smoothie", "Egg sandwich", "Peanut butter toast", "Grilled chicken"],
+    gym: ["Protein shake", "Oats with peanut butter", "Boiled eggs", "Chicken + rice"]
+  };
+
+  sportSelect.addEventListener("change", () => {
+    const sport = sportSelect.value;
+    roleSelect.innerHTML = "";
+
+    if (roles[sport]) {
+      roleSelect.disabled = false;
+      roles[sport].forEach(role => {
+        const option = document.createElement("option");
+        option.value = role;
+        option.textContent = role.charAt(0).toUpperCase() + role.slice(1);
+        roleSelect.appendChild(option);
+      });
+    } else {
+      roleSelect.disabled = true;
+    }
+  });
+
+  document.getElementById("workoutForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Hide all plans
+    document.querySelectorAll(".plan").forEach(p => p.style.display = "none");
+
+    const sport = sportSelect.value;
+    const role = roleSelect.value;
+    const planId = `${sport}-${role}`;
+    const planEl = document.getElementById(planId);
+
+    if (planEl) {
+      planEl.style.display = "block";
+    }
+
+    // Show diet plan
+    const dietList = document.getElementById("diet-items");
+    dietList.innerHTML = "";
+    if (diets[sport]) {
+      diets[sport].forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        dietList.appendChild(li);
+      });
+      document.getElementById("diet-plan").style.display = "block";
+    }
+  });
+
+  function submitMembership() {
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    if (name === "" || phone.length !== 10) {
+      alert("Please enter valid name and 10-digit phone number.");
+      return;
+    }
+
+    document.getElementById("membershipForm").style.display = "none";
+    document.getElementById("thankyou-msg").style.display = "block";
+    document.getElementById("workoutForm").style.display = "block";
+  }
+</script>
+
+<footer style="text-align:center; padding: 15px; background-color: #f0f0f0; margin-top: 40px; border-top: 1px solid #b5afaf;">
+  &copy; 2025 THE FIT INDIA PROJECT. All rights reserved.
+</footer>
+
+</body>
+</html>
